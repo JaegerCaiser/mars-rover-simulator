@@ -1,0 +1,8 @@
+{
+  "name": "mars-rover-simulator",
+  "version": "1.0.0",
+  "description": "A mars rover simulator",
+  "main": "index.ts",
+  "author": "Matheus Caiser",
+  "license": "MIT"
+}
