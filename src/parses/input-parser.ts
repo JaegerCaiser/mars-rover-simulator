@@ -1,7 +1,7 @@
 import { Coordinate } from "../types/coordinate"
-import { Position } from "../types/position"
-import { Orientation, orientations } from "../types/orientation"
 import { Instruction, instructions } from "../types/instructions"
+import { orientations } from "../types/orientation"
+import { Position } from "../types/position"
 
 export const parseCoordinate = (properties: Array<string>): Coordinate => {
     return { x: Number(properties[0]), y: Number(properties[1]) }
@@ -21,6 +21,6 @@ export const parseStatingPosition = (properties: Array<string>): Position => {
 
 export const parseInstructions = (commands: Array<string>): Array<Instruction> => {
     return commands.map(command => {
-        return instructions[command]
+        return instructions.filter((instruction) => instruction.command === command)[0]
     })
 }

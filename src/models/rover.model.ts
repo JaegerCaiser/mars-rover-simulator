@@ -1,15 +1,29 @@
-import { Orientation } from "../types/orientation";
+import { Instruction, instructions, Instructions } from "../types/instructions";
 import { Position } from "../types/position";
 
-export class Rover {
-    _initialPosition: Position;
-    public executeCommand: (orientation: Orientation) => Position;
-
-    set initialPosition(position: Position) {
-        this._initialPosition = position;
+interface IRover {
+    initialPosition: Position;
+    executeCommands: (instructions: Array<Instruction>) => Position;
+}
+export class Rover implements IRover {
+    initialPosition: Position;
+    instructions: Instruction[];
+    executeCommands(): Position {
+        return this.instructions.reduce((finalPosition, instruction): Position => {
+            let position = finalPosition;
+            if (instruction === Instructions.Move) {
+                position = position.orientation.forward(position);
+            }
+            if (instruction === Instructions.Left) {
+                position = position.orientation.left(position);
+            }
+            if (instruction === Instructions.Right) {
+                position = position.orientation.right(position);
+            }
+            return finalPosition;
+        }, { ...this.initialPosition } as Position)
     }
 
-    get initialPosition() {
-        return this._initialPosition
-    }
+
+
 }

@@ -1,11 +1,16 @@
-type Command = 'Move' | 'Left' | 'Right'
-
 export interface Instruction {
-    Command: string;
+    command: string;
 }
 
-export const instructions: Record<Command, string> = {
-    Move: "M",
-    Left: "L",
-    Right: "R"
+export const instructions = [
+    { command: "M" },
+    { command: "L" },
+    { command: "R" }
+]
+
+
+export const Instructions = {
+    Move: instructions[0],
+    Left: instructions[1],
+    Right: instructions[2]
 }
